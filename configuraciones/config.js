@@ -1,5 +1,5 @@
 module.exports = {
     SERVER: {
-        port: 5000
+        port: process.env.PORT || 5000
     }
 }
