@@ -4,7 +4,7 @@ exports.registrarVenta = (req, res) => {
     var venta = new Venta({
         fecha: Date.now,
         obras_id: req.body.obras.ids,
-        comprador_id: req.body.comprador._id,
+        comprador: req.body.comprador._id,
         monto: req.body.monto
     });
 
@@ -18,18 +18,19 @@ exports.registrarVenta = (req, res) => {
     });
 }
 
-exports.encontrarPorFecha = (req, res) => {
-    Artista.findOne({fecha: req.params.fecha}, (error, response) => {
+
+exports.listar = (req, res) => {
+    Venta.find((error, response) => {
         if(error) {
-            res.status(500).json({mensaje: error})
+            res.status(500).json({mensaje: error});
         } else {
             res.status(200).json(response);
         }
-    });
+    }).sort(-fecha)
 }
 
-exports.encontrarPorArtista = (req, res) => {
-    Artista.findOne({fecha: req.params.fecha}, (error, response) => {
+exports.encontrarPorArtistaId = (req, res) => {
+    Artista.find({autor: req.params.artista_id}, (error, response) => {
         if(error) {
             res.status(500).json({mensaje: error})
         } else {
