@@ -7,7 +7,8 @@ var obra = new Schema({
     fecha: Date,
     autor: String,
     tags: Array,
-    precio: Number
+    precio: Number,
+    imagen: String
 });
 
 module.exports = mongoose.model('Obra', obra);
