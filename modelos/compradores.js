@@ -2,10 +2,9 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-var persona = new Schema({
+var comprador = new Schema({
     nombre: String,
     apellido: String,
-    edad: Number,
     direccion: {
         calle: String,
         numero: Number
@@ -14,7 +13,8 @@ var persona = new Schema({
         telefono: Number,
         celular: Number,
         correo: String
-    }
+    },
+    intereses: [{type: String}]
 });
 
-module.exports = mongoose.model('Persona', persona);
+module.exports = mongoose.model('Comprador', comprador);

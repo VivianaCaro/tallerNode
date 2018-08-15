@@ -17,6 +17,8 @@ router.delete('/artista/eliminar/:id', ctrlArtista.eliminarPorId);
 // rutas obras
 router.post('/obra/crear', ctrlObra.guardar);
 router.get('/obra/listar', ctrlObra.listar);
-
+router.get('/obra/listar/:id', ctrlObra.listarPorId);
+router.get('/obra/encontrar/:tags', ctrlObra.encontrarPorTag);
+router.delete('/obra/eliminar/:id', ctrlObra.eliminarPorId);
 
 module.exports = router;
