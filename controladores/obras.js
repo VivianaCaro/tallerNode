@@ -1,25 +1,40 @@
 const Obra = require('../modelos/obras');
+const Artista = require('../modelos/artistas');
+var cloudinary = require('cloudinary');
 
-exports.guardar = (res,req) => {
-    var obra = new Obra({
-        titulo: req.body.titulo,
-        fecha: req.body.fecha,
-        autor: req.body.artista._id,
-        tags: req.body.tags,
-        precio: req.body.precio,
-        imagen: req.body.imagen
-    });
-    for (var i = 0; i < tag.length; i++) {
-        etc.tag.push(tag[i]);
-    }
-    // metodo save heredado de Schema
-    obra.save((error, response) => {
-        if(error) {
-            res.status(500).json({mensaje: error})
-        } else {
-            res.status(200).json(response);
-        }
-    });
+exports.guardar = (req,res) => {
+    cloudinary.v2.uploader.upload(req.files.imagen.path,
+        function(errorUpload, result){
+           if(errorUpload) {
+            console.log(errorUpload);
+           } else {
+               console.log(result.url);
+                Artista.findOne({correo: req.params.correo}, (error, responseArtista) => {
+                    if(error) {
+                        res.status(500).json({mensaje: error})
+                    } else {
+                        console.log("responseArtista: " + responseArtista);
+                        var obra = new Obra({
+                            titulo: req.body.titulo,
+                            fecha: req.body.fecha,
+                            autor: responseArtista._id,
+                            tags: req.body.tags.split(','),
+                            precio: req.body.precio,
+                            imagen: result.url
+                        });
+        
+                         // metodo save heredado de Schema
+                        obra.save((error, response) => {
+                            if(error) {
+                                res.status(500).json({mensaje: error})
+                            } else {
+                                res.status(200).json(response);
+                            }
+                        });
+                    }
+                });
+           }
+        });
 }
 
 exports.listar = (req, res) => {
@@ -54,7 +69,7 @@ exports.encontrarPorTag = (req, res) => {
 }
 
 exports.encontrarPorArtistaId = (req, res) => {
-    Obra.find({autor: req.params.artista_id}, (error, response) => {
+    Obra.find({autor: req.params.id}, (error, response) => {
         if(error) {
             res.status(500).json({mensaje: error})
         } else {

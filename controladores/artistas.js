@@ -2,8 +2,7 @@ const Artista = require('../modelos/artistas');
 var cloudinary = require('cloudinary');
 
 exports.guardar = (req, res) => {
-    //console.log(req.files);
-    cloudinary.v2.uploader.upload(req.files.imagen.path, {public_id: "sample_id"}, 
+    cloudinary.v2.uploader.upload(req.files.imagen.path,
     function(errorUpload, result){
        if(errorUpload) {
         console.log(errorUpload);
@@ -30,8 +29,6 @@ exports.guardar = (req, res) => {
             });
        }
     });
-
-    
 }
 
 exports.listar = (req, res) => {
@@ -55,8 +52,8 @@ exports.listarPorId = (req, res) => {
     });
 }
 
-exports.encontrarPorNombre = (req, res) => {
-    Artista.findOne({nombre: req.params.nombre}, (error, response) => {
+exports.encontrarPorCorreo = (req, res) => {
+    Artista.findOne({correo: req.body.correo}, (error, response) => {
         if(error) {
             res.status(500).json({mensaje: error})
         } else {

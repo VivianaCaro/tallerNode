@@ -18,7 +18,6 @@ exports.registrarVenta = (req, res) => {
     });
 }
 
-
 exports.listar = (req, res) => {
     Venta.find((error, response) => {
         if(error) {
@@ -30,7 +29,7 @@ exports.listar = (req, res) => {
 }
 
 exports.encontrarPorArtistaId = (req, res) => {
-    Artista.find({autor: req.params.artista_id}, (error, response) => {
+    Artista.find({autor: req.params.id}, (error, response) => {
         if(error) {
             res.status(500).json({mensaje: error})
         } else {

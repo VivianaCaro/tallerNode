@@ -12,7 +12,7 @@ router.get('/contacto', ctrl.contacto);
 router.post('/artista/crear', ctrlArtista.guardar);
 router.get('/artista/listar', ctrlArtista.listar);
 router.get('/artista/listar/:id', ctrlArtista.listarPorId);
-router.get('/artista/listarUno/:nombre', ctrlArtista.encontrarPorNombre);
+router.get('/artista/listarUno/:correo', ctrlArtista.encontrarPorCorreo);
 router.delete('/artista/eliminar/:id', ctrlArtista.eliminarPorId);
 
 // rutas obras
