@@ -1,8 +1,6 @@
 const Artista = require('../modelos/artistas');
 var cloudinary = require('cloudinary');
 
-var fs = require('fs');
-
 exports.guardar = (req, res) => {
     //console.log(req.files);
     cloudinary.v2.uploader.upload(req.files.imagen.path, {public_id: "sample_id"}, 
