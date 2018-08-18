@@ -5,6 +5,8 @@ exports.guardar = (req, res) => {
         nombre: req.body.nombre,
         apellido: req.body.apellido,
         edad: req.body.edad,
+        imagen: req.body.imagen,
+        biografia: req.body.biografia,
         contacto:{
             telefono: req.body.telefono,
             celular: req.body.celular,
