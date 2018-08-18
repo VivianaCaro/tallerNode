@@ -7,10 +7,7 @@ var venta = new Schema({
         type: Date,
         default: Date.now
     },
-    obras_id: [{ 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Obra'
-    }],
+    obras_id: [{type: String}],
     comprador: { 
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Comprador'

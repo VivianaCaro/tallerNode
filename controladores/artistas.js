@@ -2,6 +2,11 @@ const Artista = require('../modelos/artistas');
 var fs = require('fs');
 
 exports.guardar = (req, res) => {
+
+    
+
+
+
     var artista = new Artista({
         nombre: req.body.nombre,
         apellido: req.body.apellido,

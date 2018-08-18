@@ -3,7 +3,7 @@ const Venta = require('../modelos/ventas');
 exports.registrarVenta = (req, res) => {
     var venta = new Venta({
         fecha: Date.now,
-        obras_id: req.body.obras.ids,
+        obras_ids: req.body.obras.ids,
         comprador: req.body.comprador._id,
         monto: req.body.monto
     });

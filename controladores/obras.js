@@ -2,7 +2,7 @@ const Obra = require('../modelos/obras');
 
 exports.guardar = (res,req) => {
     var obra = new Obra({
-        //titulo: req.body.titulo,
+        titulo: req.body.titulo,
         fecha: req.body.fecha,
         autor: req.body.artista._id,
         tags: req.body.tags,
