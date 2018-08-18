@@ -17,7 +17,7 @@ var allowCrossDomain = function(req, res, next) {
 
 app.get('/account', (req, res) => res.render('account.html'));
 
-app.get('/sign-s3', (req, res) => {
+app.post('/sign-s3', (req, res) => {
     const s3 = new aws.S3();
     const fileName = req.query['file-name'];
     const fileType = req.query['file-type'];
