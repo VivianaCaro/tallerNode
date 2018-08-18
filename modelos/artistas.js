@@ -9,7 +9,6 @@ var artista = new Schema({
     imagen: String,
     biografia: String,
     contacto:{
-        telefono: Number,
         celular: Number,
         correo: String
     }
