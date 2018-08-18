@@ -1,11 +1,12 @@
 const Artista = require('../modelos/artistas');
+var fs = require('fs');
 
 exports.guardar = (req, res) => {
     var artista = new Artista({
         nombre: req.body.nombre,
         apellido: req.body.apellido,
         edad: req.body.edad,
-        imagen: req.body.imagen,
+        imagen: {data: fs.readFileSync(req.body.imagen), contentType : 'image/png' },
         biografia: req.body.biografia,
         contacto:{
             celular: req.body.celular,
@@ -28,6 +29,7 @@ exports.listar = (req, res) => {
         if(error) {
             res.status(500).json({mensaje: error})
         } else {
+            //res.contentType(response.imagen.contentType); 
             res.status(200).json(response);
         }
     })

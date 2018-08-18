@@ -6,7 +6,7 @@ var artista = new Schema({
     nombre: String,
     apellido: String,
     edad: Number,
-    imagen: String,
+    imagen: { data: Buffer, contentType: String },
     biografia: String,
     contacto:{
         celular: Number,
