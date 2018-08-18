@@ -4,6 +4,15 @@ const app = express();
 const mongoose = require('mongoose');
 const config = require('./configuraciones/config');
 const rutas = require('./rutas/public');
+
+var cloudinary = require('cloudinary');
+cloudinary.config({ 
+    cloud_name: 'viviana-taller-js', 
+    api_key: '617162444936569', 
+    api_secret: 'Bp0xr3BCmoCOy5b8QbGN5TtpKPs' 
+  });
+  
+  
 const aws = require('aws-sdk');
 const S3_BUCKET = process.env.S3_BUCKET_NAME;
 

@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.296.0",
+    "cloudinary": "^1.11.0",
     "connect-multiparty": "^2.1.1",
     "cors": "^2.8.4",
     "express": "^4.16.3",

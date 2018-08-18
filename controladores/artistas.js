@@ -1,32 +1,39 @@
 const Artista = require('../modelos/artistas');
+var cloudinary = require('cloudinary');
+
 var fs = require('fs');
 
 exports.guardar = (req, res) => {
+    //console.log(req.files);
+    cloudinary.v2.uploader.upload(req.files.imagen.path, {public_id: "sample_id"}, 
+    function(errorUpload, result){
+       if(errorUpload) {
+        console.log(errorUpload);
+       } else {
+            var artista = new Artista({
+                nombre: req.body.nombre,
+                apellido: req.body.apellido,
+                edad: req.body.edad,
+                imagen: result.url,
+                biografia: req.body.biografia,
+                contacto:{
+                    celular: req.body.celular,
+                    correo: req.body.correo
+                }
+            });
+        
+            // metodo save heredado de Schema
+            artista.save((error, response) => {
+                if(error) {
+                    res.status(500).json({mensaje: error})
+                } else {
+                    res.status(200).json(response);
+                }
+            });
+       }
+    });
 
     
-
-
-
-    var artista = new Artista({
-        nombre: req.body.nombre,
-        apellido: req.body.apellido,
-        edad: req.body.edad,
-        imagen: {data: fs.readFileSync(req.body.imagen), contentType : 'image/png' },
-        biografia: req.body.biografia,
-        contacto:{
-            celular: req.body.celular,
-            correo: req.body.correo
-        }
-    });
-
-    // metodo save heredado de Schema
-    artista.save((error, response) => {
-        if(error) {
-            res.status(500).json({mensaje: error})
-        } else {
-            res.status(200).json(response);
-        }
-    });
 }
 
 exports.listar = (req, res) => {
