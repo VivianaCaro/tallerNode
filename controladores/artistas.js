@@ -29,7 +29,6 @@ exports.listar = (req, res) => {
         if(error) {
             res.status(500).json({mensaje: error})
         } else {
-            //res.contentType(response.imagen.contentType); 
             res.status(200).json(response);
         }
     })

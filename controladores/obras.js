@@ -2,11 +2,12 @@ const Obra = require('../modelos/obras');
 
 exports.guardar = (res,req) => {
     var obra = new Obra({
-        titulo: req.body.titulo,
+        //titulo: req.body.titulo,
         fecha: req.body.fecha,
         autor: req.body.artista._id,
         tags: req.body.tags,
-        precio: req.body.precio
+        precio: req.body.precio,
+        imagen: req.body.imagen
     });
     for (var i = 0; i < tag.length; i++) {
         etc.tag.push(tag[i]);
