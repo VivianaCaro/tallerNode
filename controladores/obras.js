@@ -3,6 +3,7 @@ const Artista = require('../modelos/artistas');
 var cloudinary = require('cloudinary');
 
 exports.guardar = (req,res) => {
+console.log(req.files);
     cloudinary.v2.uploader.upload(req.files.imagen.path,
         function(errorUpload, result){
            if(errorUpload) {
@@ -13,10 +14,10 @@ exports.guardar = (req,res) => {
                     if(error) {
                         res.status(500).json({mensaje: error})
                     } else {
-                        console.log("responseArtista: " + responseArtista);
+                        // arma la fecha
                         var obra = new Obra({
                             titulo: req.body.titulo,
-                            fecha: req.body.fecha,
+                            creacion: req.body.creacion,
                             autor: responseArtista._id,
                             tags: req.body.tags.split(','),
                             precio: req.body.precio,

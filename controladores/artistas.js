@@ -7,10 +7,11 @@ exports.guardar = (req, res) => {
        if(errorUpload) {
         console.log(errorUpload);
        } else {
+            var fechaNacimiento = new Date(req.body.anio+"-"+req.body.mes+"-"+req.body.dia);
             var artista = new Artista({
                 nombre: req.body.nombre,
                 apellido: req.body.apellido,
-                edad: req.body.edad,
+                nacimiento: fechaNacimiento,
                 imagen: result.url,
                 biografia: req.body.biografia,
                 contacto:{

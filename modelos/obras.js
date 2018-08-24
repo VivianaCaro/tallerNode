@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 var obra = new Schema({
     titulo: String,
-    fecha: Date,
+    creacion: Number,
     autor: String,
     tags: [{type: String}],
     precio: Number,
