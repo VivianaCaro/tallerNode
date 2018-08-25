@@ -54,7 +54,7 @@ exports.listarPorId = (req, res) => {
 }
 
 exports.encontrarPorCorreo = (req, res) => {
-    Artista.findOne({correo: req.body.correo}, (error, response) => {
+    Artista.findOne({'contacto.correo': req.body.correo}, (error, response) => {
         if(error) {
             res.status(500).json({mensaje: error})
         } else {

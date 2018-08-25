@@ -9,9 +9,10 @@ console.log(req.files);
            if(errorUpload) {
             console.log(errorUpload);
            } else {
-               console.log(result.url);
-                Artista.findOne({correo: req.params.correo}, (error, responseArtista) => {
+               console.log(req.body.correo);
+                Artista.findOne({'contacto.correo': req.body.correo}, (error, responseArtista) => {
                     if(error) {
+                        console.log(error);
                         res.status(500).json({mensaje: error})
                     } else {
                         // arma la fecha
