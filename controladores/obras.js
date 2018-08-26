@@ -14,6 +14,9 @@ console.log(req.files);
                     if(error) {
                         console.log(error);
                         res.status(500).json({mensaje: error})
+                    } else if(responseArtista == null) {
+                        console.log("Artista no encontrado");
+                        res.status(501).json({mensaje: "Artista no encontrado."})
                     } else {
                         // arma la fecha
                         var obra = new Obra({
